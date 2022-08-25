@@ -14,7 +14,7 @@ arquivo_fundo_zoom = "C:\\Users\\99771546\\AppData\\Roaming\\Zoom\\data\\Virtual
 countdown_date = datetime.date(day=20, month=11, year=2022)
 
 #Frase na imagem
-title_text = "Faltam {} dias para a copa"
+title_text = "Faltam {:02d} dias para a copa"
 #======================
 
 #Dias para data final
