@@ -30,7 +30,7 @@ title_text = title_text.format(gap_countdown)
 my_image = Image.open("FundoZeCopa.png")
 title_font = ImageFont.truetype('GaroaHackerClubeBold.otf', 100)
 image_editable = ImageDraw.Draw(my_image)
-image_editable.text((300,20), title_text, (0, 0, 0), font=title_font)
+image_editable.multiline_text((300,20), title_text, "black", font=title_font, align='center', stroke_width=2, stroke_fill="white")
 my_image.save("FundoZeCopaResult.jpg")
 
 #Mudando no Zoom
