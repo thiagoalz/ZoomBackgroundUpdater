@@ -1,6 +1,7 @@
 from PIL import Image, ImageFont, ImageDraw
 import datetime
 import os
+import shutil
 
 #=====Configuracao=====
 #Voce vera a nova imagem na proxima reunião iniciada
@@ -9,6 +10,8 @@ import os
 #Precisa descobrir qual a pasta e qual o nome de arquivo que o seu zoom usou para salvar o seu background em uso
 #Vc pode fazer isso adicionando um background novo e verificando a data dos arquivos 
 arquivo_fundo_zoom = "C:\\Users\\99771546\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom\\{FFCB4691-A4F1-4031-AD05-C62BA8B7510D}"
+
+arquivo_fundo_teams = "C:\\Users\\99771546\\AppData\\Roaming\\Microsoft\\Teams\\Backgrounds\\Uploads\\FundoZeCopa.png"
 
 #Data final
 countdown_date = datetime.date(day=20, month=11, year=2022)
@@ -31,4 +34,9 @@ image_editable.text((300,20), title_text, (0, 0, 0), font=title_font)
 my_image.save("FundoZeCopaResult.jpg")
 
 #Mudando no Zoom
-os.replace("FundoZeCopaResult.jpg", arquivo_fundo_zoom)
+shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_zoom)
+
+#Mudando no Teams
+shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_teams)
+
+os.remove("FundoZeCopaResult.jpg")
