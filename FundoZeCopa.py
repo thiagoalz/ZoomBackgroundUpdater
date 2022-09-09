@@ -1,5 +1,5 @@
 from PIL import Image, ImageFont, ImageDraw
-import datetime
+from datetime import datetime, date
 import os
 import shutil
 
@@ -9,45 +9,49 @@ import shutil
 
 #Imagem original
 original_image_path = "FundoZeCopa.png"
-#Fonte
-font_path = 'GaroaHackerClubeBold.otf'
-#tamanho
-font_size = 100
 
 #Precisa descobrir qual a pasta e qual o nome de arquivo que o seu zoom usou para salvar o seu background em uso
 #Vc pode fazer isso adicionando um background novo e verificando a data dos arquivos 
 arquivo_fundo_zoom = "C:\\Users\\99771546\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom\\{FFCB4691-A4F1-4031-AD05-C62BA8B7510D}"
-
 arquivo_fundo_teams = "C:\\Users\\99771546\\AppData\\Roaming\\Microsoft\\Teams\\Backgrounds\\Uploads\\FundoZeCopa.png"
-
-#Data final
-countdown_date = datetime.date(day=20, month=11, year=2022)
 
 #Frase na imagem
 title_text = "Faltam {:02d} dias para a copa"
 
+#Data final
+countdown_date_text = "2022-11-20"
+countdown_date = datetime.strptime(countdown_date_text, "%Y-%m-%d").date()
+gap_countdown = (countdown_date-date.today()).days
+title_text = title_text.format(gap_countdown)
+
+#Fonte
+font_path = 'GaroaHackerClubeBold.otf'
+font_size = 100
+text_color = "black" #you can use "black" or (0,0,0)
+text_stroke_color = "white" #you can use "black" or (0,0,0)
+text_stroke_width = 0
+
 #Posicao do texto
 #lelft, right, center or number of pixels
 width_text_pos = "center"
-
 #top, botton, center or number of pixels
-height_text_pos = "30"
+height_text_pos = "25"
 #======================
 
 def get_center_width(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=2)
+	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
 	return((image.im.size[0]/2)-text_box[2]/2)
 	
 def get_center_height(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=2)
+	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
 	return((image.im.size[1]/2)-text_box[3]/2)
 
 def get_right_width(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=2)
+	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
 	return((image.im.size[0])-text_box[2])
 
 def get_botton_height(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=2)
+	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
 	return((image.im.size[1])-text_box[3])
 	
 def text_position(image):
@@ -81,10 +85,6 @@ def text_position(image):
 			
 	return (width_return,height_return)
 	
-#Dias para data final
-date_today = datetime.date.today()
-gap_countdown = (countdown_date-date_today).days
-title_text = title_text.format(gap_countdown)
 
 #Montando Imagem
 my_image = Image.open(original_image_path)
@@ -93,7 +93,7 @@ image_editable = ImageDraw.Draw(my_image)
 
 text_pos = text_position(image_editable)
 
-image_editable.multiline_text(text_pos, title_text, "black", font=title_font, align='center', stroke_width=2, stroke_fill="white")
+image_editable.multiline_text(text_pos, title_text, text_color, font=title_font, align='center', stroke_width=text_stroke_width, stroke_fill=text_stroke_color)
 my_image.save("FundoZeCopaResult.jpg")
 
 #Mudando no Zoom
