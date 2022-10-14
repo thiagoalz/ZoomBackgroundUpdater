@@ -11,8 +11,13 @@ import shutil
 original_image_path = "FundoZeCopa.png"
 
 #Precisa descobrir qual a pasta e qual o nome de arquivo que o seu zoom usou para salvar o seu background em uso
-#Vc pode fazer isso adicionando um background novo e verificando a data dos arquivos 
+#Vc pode fazer isso adicionando um background novo e verificando a data dos arquivos
+#Padrao Windows: C:\\Users\\Username\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom\\{FFCB4691-A4F1-4031-AD05-C62BA8B7510D}
+#Padaro macOS: /Users/Username/Library/Application Support/zoom.us/data/VirtualBkgnd_Custom/63327A14-224B-49B1-8E66-30AF4686089A
+
 arquivo_fundo_zoom = "/Users/zeuser/Library/Application Support/zoom.us/data/VirtualBkgnd_Custom/63327A14-224B-49B1-8E66-30AF4686089A"
+
+#Padrao windows: C:\\Users\\99771546\\AppData\\Roaming\\Microsoft\\Teams\\Backgrounds\\Uploads\\FundoZeCopa.png
 arquivo_fundo_teams = ""
 
 #Frase na imagem
@@ -89,10 +94,10 @@ image_editable.multiline_text(text_pos, title_text, text_color, font=title_font,
 my_image.save("FundoZeCopaResult.jpg")
 
 #Mudando no Zoom
-shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_zoom)
+if arquivo_fundo_zoom: shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_zoom)
 
 #Mudando no Teams
-shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_teams)
+if arquivo_fundo_teams: shutil.copyfile("FundoZeCopaResult.jpg", arquivo_fundo_teams)
 
 os.remove("FundoZeCopaResult.jpg")
-	
+
