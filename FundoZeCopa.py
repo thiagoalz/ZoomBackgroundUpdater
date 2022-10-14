@@ -12,8 +12,8 @@ original_image_path = "FundoZeCopa.png"
 
 #Precisa descobrir qual a pasta e qual o nome de arquivo que o seu zoom usou para salvar o seu background em uso
 #Vc pode fazer isso adicionando um background novo e verificando a data dos arquivos 
-arquivo_fundo_zoom = "C:\\Users\\99771546\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom\\{FFCB4691-A4F1-4031-AD05-C62BA8B7510D}"
-arquivo_fundo_teams = "C:\\Users\\99771546\\AppData\\Roaming\\Microsoft\\Teams\\Backgrounds\\Uploads\\FundoZeCopa.png"
+arquivo_fundo_zoom = "/Users/zeuser/Library/Application Support/zoom.us/data/VirtualBkgnd_Custom/63327A14-224B-49B1-8E66-30AF4686089A"
+arquivo_fundo_teams = ""
 
 #Frase na imagem
 title_text = "Faltam {:02d} dias para a copa"
@@ -56,32 +56,24 @@ def get_botton_height(image):
 	
 def text_position(image):
 	width_return = 0
-	match width_text_pos:
-		case "center":
-			 width_return = get_center_width(image)
-		case "left":
-			 width_return = 0
-		case "right":
-			 width_return = get_right_width(image)
-		case _:
-			try:
-				width_return = int(width_text_pos)
-			except:
-				print("Parametro width_text_pos invalido")		
+	if width_text_pos == "center": width_return = get_center_width(image)
+	elif width_text_pos == "left": width_return = 0
+	elif width_text_pos == "right": width_return = get_right_width(image)
+	else:
+		try:
+			width_return = int(width_text_pos)
+		except:
+			print("Parametro width_text_pos invalido")		
 
 	height_return = 0
-	match height_text_pos:
-		case "center":
-			 height_return = get_center_height(image)
-		case "top":
-			 height_return = 0
-		case "botton":
-			 height_return = get_botton_height(image)
-		case _:
-			try:
-				height_return = int(height_text_pos)
-			except:
-				print("Parametro height_text_pos invalido")
+	if height_text_pos == "center": height_return = get_center_height(image)
+	elif height_text_pos == "top": height_return = 0
+	elif height_text_pos == "botton": height_return = get_botton_height(image)
+	else:
+		try:
+			height_return = int(height_text_pos)
+		except:
+			print("Parametro height_text_pos invalido")
 			
 	return (width_return,height_return)
 	
