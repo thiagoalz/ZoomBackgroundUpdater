@@ -37,7 +37,7 @@ text_stroke_color = "white" #you can use "black" or (0,0,0)
 text_stroke_width = 0
 
 #Posicao do texto
-#lelft, right, center or number of pixels
+#left, right, center or number of pixels
 width_text_pos = "center"
 #top, botton, center or number of pixels
 height_text_pos = "25"
