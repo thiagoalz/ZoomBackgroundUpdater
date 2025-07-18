@@ -39,7 +39,7 @@ text_stroke_width = 0
 #Posicao do texto
 #lelft, right, center or number of pixels
 width_text_pos = "center"
-#top, botton, center or number of pixels
+#top, bottom, center or number of pixels
 height_text_pos = "25"
 #======================
 
@@ -55,9 +55,9 @@ def get_right_width(image):
 	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
 	return((image.im.size[0])-text_box[2])
 
-def get_botton_height(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
-	return((image.im.size[1])-text_box[3])
+def get_bottom_height(image):
+        text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
+        return((image.im.size[1])-text_box[3])
 	
 def text_position(image):
 	width_return = 0
@@ -73,7 +73,7 @@ def text_position(image):
 	height_return = 0
 	if height_text_pos == "center": height_return = get_center_height(image)
 	elif height_text_pos == "top": height_return = 0
-	elif height_text_pos == "botton": height_return = get_botton_height(image)
+        elif height_text_pos == "bottom": height_return = get_bottom_height(image)
 	else:
 		try:
 			height_return = int(height_text_pos)
