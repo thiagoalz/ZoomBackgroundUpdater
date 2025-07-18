@@ -44,44 +44,50 @@ height_text_pos = "25"
 #======================
 
 def get_center_width(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
-	return((image.im.size[0]/2)-text_box[2]/2)
-	
+    text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
+    return((image.im.size[0]/2)-text_box[2]/2)
+    
 def get_center_height(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
-	return((image.im.size[1]/2)-text_box[3]/2)
+    text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
+    return((image.im.size[1]/2)-text_box[3]/2)
 
 def get_right_width(image):
-	text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
-	return((image.im.size[0])-text_box[2])
+    text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
+    return((image.im.size[0])-text_box[2])
 
 def get_bottom_height(image):
         text_box = image.textbbox((0,0), title_text, font=title_font, align='center', stroke_width=text_stroke_width)
         return((image.im.size[1])-text_box[3])
-	
+    
 def text_position(image):
-	width_return = 0
-	if width_text_pos == "center": width_return = get_center_width(image)
-	elif width_text_pos == "left": width_return = 0
-	elif width_text_pos == "right": width_return = get_right_width(image)
-	else:
-		try:
-			width_return = int(width_text_pos)
-		except:
-			print("Parametro width_text_pos invalido")		
+    width_return = 0
+    if width_text_pos == "center":
+        width_return = get_center_width(image)
+    elif width_text_pos == "left":
+        width_return = 0
+    elif width_text_pos == "right":
+        width_return = get_right_width(image)
+    else:
+        try:
+            width_return = int(width_text_pos)
+        except Exception:
+            print("Parametro width_text_pos invalido")
 
-	height_return = 0
-	if height_text_pos == "center": height_return = get_center_height(image)
-	elif height_text_pos == "top": height_return = 0
-        elif height_text_pos == "bottom": height_return = get_bottom_height(image)
-	else:
-		try:
-			height_return = int(height_text_pos)
-		except:
-			print("Parametro height_text_pos invalido")
-			
-	return (width_return,height_return)
-	
+    height_return = 0
+    if height_text_pos == "center":
+        height_return = get_center_height(image)
+    elif height_text_pos == "top":
+        height_return = 0
+    elif height_text_pos == "bottom":
+        height_return = get_bottom_height(image)
+    else:
+        try:
+            height_return = int(height_text_pos)
+        except Exception:
+            print("Parametro height_text_pos invalido")
+
+    return (width_return, height_return)
+    
 
 #Montando Imagem
 my_image = Image.open(original_image_path)
